@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OG.GG - Sign Up</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('log.png');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .main-title {
+            font-size: 5em;
+            margin-bottom: 100px; /* Adjust this value to move the title higher or lower */
+            color:  #00d9ff;
+        }
+        .card-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .card {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 80vw;
+            max-width: 600px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .card-title {
+            text-align: center;
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-label {
+            font-size: 1.5em;
+            color: #fff;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .form-control {
+            font-size: 1.2em;
+            padding: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .btn {
+            font-size: 1.2em;
+            padding: 10px;
+            width: 100%;
+        }
+        .custom-btn {
+            background-color: #210653; /* Black background */
+            color: #fff; /* White text */
+        }
+        .error {
+            color: #fff;
+            font-size: 1em;
+            margin-top: 5px;
+        }
+        .animate-slide-in {
+            animation: slide-in 0.5s ease-out;
+        }
+        @keyframes slide-in {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="main-title">Original Gangster</h1>
+    <div class="card-container">
+        <div class="col-md-12 animate-slide-in">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Sign Up</h3>
+                    <form id="signUpForm">
+                        <div class="form-group">
+                            <label for="username" class="form-label">Username:</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                            <div id="usernameError" class="error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                            <div id="emailError" class="error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div id="passwordError" class="error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="repassword" class="form-label">Re-enter Password:</label>
+                            <input type="password" class="form-control" id="repassword" name="repassword" required>
+                            <div id="repasswordError" class="error"></div>
+                        </div>
+                        <button type="submit" class="btn custom-btn">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signUpForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Clear previous error messages
+            document.getElementById('usernameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('repasswordError').textContent = '';
+
+            // Validate form inputs
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var repassword = document.getElementById('repassword').value;
+            var valid = true;
+
+            if (username.length < 3) {
+                document.getElementById('usernameError').textContent = 'Username must be at least 3 characters long.';
+                valid = false;
+            }
+
+            if (!validateEmail(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+                valid = false;
+            }
+
+            if (password.length < 6) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long.';
+                valid = false;
+            }
+
+            if (password !== repassword) {
+                document.getElementById('repasswordError').textContent = 'Passwords do not match.';
+                valid = false;
+            }
+
+            if (valid) {
+                // If valid, redirect to the success page
+                window.location.href = 'succeed sign up .html'
+            }
+        });
+
+        function validateEmail(email) {
+            var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>
